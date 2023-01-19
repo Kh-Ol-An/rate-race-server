@@ -12,16 +12,16 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-// app.options('/url...', function(req, res, next){
-//     res.header('Access-Control-Allow-Origin', "*");
-//     res.header('Access-Control-Allow-Methods', 'POST');
-//     res.header("Access-Control-Allow-Headers", "accept, content-type");
-//     res.header("Access-Control-Max-Age", "1728000");
-//     return res.sendStatus(200);
-// });
+app.options(process.env.CLIENT_URL, function(req, res, next){
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Methods', 'POST');
+    res.header("Access-Control-Allow-Headers", "accept, content-type");
+    res.header("Access-Control-Max-Age", "1728000");
+    return res.sendStatus(200);
+});
 app.use(cors({
     credentials: true,
-    origin: [process.env.CLIENT_URL, 'https://rat-race.vercel.app/#/auth', 'https://rat-race.vercel.app/#'],
+    origin: process.env.CLIENT_URL,
 }));
 app.use('/api', router);
 app.use(errorMiddleware);
