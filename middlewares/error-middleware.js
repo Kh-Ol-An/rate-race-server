@@ -10,5 +10,5 @@ module.exports = function (err, req, res, next) {
     }
     console.log('errorMiddleware end');
 
-    return res.status(500).json({ message: 'Неочікувана помилка...' });
+    return res.status(500).json({ message: 'Неочікувана помилка...' }).render('error', { error: err });
 };
