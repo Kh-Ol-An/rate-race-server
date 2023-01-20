@@ -25,7 +25,6 @@ class UserController {
 
             return res.json(userData);
         } catch (err) {
-            console.log('controller', err);
             next(err);
         }
     };
