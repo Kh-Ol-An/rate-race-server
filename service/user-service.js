@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
 const userModel = require('../models/user-model');
-const mailService = require('./mail-service');
+// const mailService = require('./mail-service');
 const tokenService = require('./token-service');
 const UserDto = require('../dtos/user-dto');
 const ApiError = require('../exceptions/api-error');
@@ -18,12 +18,12 @@ class MailService {
         const activationLink = uuid.v4();
 
         const user = await userModel.create({ name, email, password: hashPassword, activationLink });
+        // await mailService.sendActivationMail(email, `${process.env.API_URL}/api/activate/${activationLink}`);
 
         const userDto = new UserDto(user);
         const tokens = tokenService.generatesTokens({ ...userDto });
         await tokenService.saveToken(userDto.id, tokens.refreshToken);
         await blankModel.create({ user: userDto.id });
-        await mailService.sendActivationMail(email, `${process.env.API_URL}/api/activate/${activationLink}`);
 
         return {
             ...tokens,
