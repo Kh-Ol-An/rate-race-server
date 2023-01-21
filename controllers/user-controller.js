@@ -7,7 +7,11 @@ class UserController {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                return next(ApiError.BadRequest('Помилка під час валідації', errors.array()))
+                return next(ApiError.BadRequest(
+                    'Помилка під час валідації',
+                    'registration.validation',
+                    errors.array(),
+                ))
             }
 
             const { name, email, password } = req.body;
