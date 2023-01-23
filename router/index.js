@@ -8,7 +8,7 @@ const router = new Router();
 
 router.post(
     '/registration',
-    // body('email').isEmail(),
+    body('email').isEmail(),
     body('password').isLength({ min: 8, max: 64 }),
     registration,
 );

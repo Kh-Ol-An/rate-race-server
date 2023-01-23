@@ -11,11 +11,7 @@ class MailService {
     async registration(name, email, password) {
         const candidate = await userModel.findOne({ email });
         if (candidate) {
-            // throw ApiError.BadRequest(`Користувач з поштовою адресою "${email}" вже існує.`, 'registration');
-            throw ApiError.BadRequest(
-                `Нажаль твоє будь-що не унікальне. Користувач з "${email}" вже існує.`,
-                'registration',
-                );
+            throw ApiError.BadRequest(`Користувач з поштовою адресою '${email}' вже існує.`, 'registration');
         }
 
         const hashPassword = await bcrypt.hash(password, 3);
