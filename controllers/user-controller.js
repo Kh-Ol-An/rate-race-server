@@ -17,7 +17,6 @@ class UserController {
             const { name, email, password } = req.body;
             const userData = await userService.registration(name, email, password);
 
-            console.log('userData::: ', userData);
             res.cookie(
                 'refreshToken',
                 userData.refreshToken,
@@ -39,6 +38,8 @@ class UserController {
             const { email, password } = req.body;
             const userData = await userService.login(email, password);
 
+
+            console.log('userData::: ', userData);
             res.cookie(
                 'refreshToken',
                 userData.refreshToken,
