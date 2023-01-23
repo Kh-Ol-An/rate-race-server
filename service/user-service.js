@@ -70,15 +70,15 @@ class MailService {
         return await tokenService.removeToken(refreshToken);
     };
 
-    async refresh(refreshToken) {
+    async refresh(refreshToken, req) {
         if (!refreshToken) {
-            throw ApiError.UnauthorizedError('Користувач не авторизований!');
+            throw ApiError.UnauthorizedError(req);
         }
 
         const userData = tokenService.validateRefreshToken(refreshToken);
         const tokenFromDb = await tokenService.findToken(refreshToken);
         if (!userData || !tokenFromDb) {
-            throw ApiError.UnauthorizedError('Користувач не авторизований!!!');
+            throw ApiError.UnauthorizedError();
         }
 
         const user = await userModel.findById(userData.id);
