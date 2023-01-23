@@ -72,7 +72,7 @@ class MailService {
 
     async refresh(refreshToken, req) {
         if (!refreshToken) {
-            throw ApiError.UnauthorizedError(req);
+            throw ApiError.UnauthorizedError('Користувач не авторизований(((', req);
         }
 
         const userData = tokenService.validateRefreshToken(refreshToken);
