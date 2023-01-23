@@ -72,13 +72,13 @@ class MailService {
 
     async refresh(refreshToken) {
         if (!refreshToken) {
-            throw ApiError.UnauthorizedError();
+            throw ApiError.UnauthorizedError('Користувач не авторизований!');
         }
 
         const userData = tokenService.validateRefreshToken(refreshToken);
         const tokenFromDb = await tokenService.findToken(refreshToken);
         if (!userData || !tokenFromDb) {
-            throw ApiError.UnauthorizedError();
+            throw ApiError.UnauthorizedError('Користувач не авторизований!!!');
         }
 
         const user = await userModel.findById(userData.id);
