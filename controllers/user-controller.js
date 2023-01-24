@@ -38,8 +38,6 @@ class UserController {
             const { email, password } = req.body;
             const userData = await userService.login(email, password);
 
-
-            console.log('userData::: ', userData);
             res.cookie(
                 'refreshToken',
                 userData.refreshToken,
@@ -52,7 +50,6 @@ class UserController {
 
             return res.json(userData);
         } catch (err) {
-            console.log('err::: ', err);
             next(err);
         }
     };
@@ -83,6 +80,7 @@ class UserController {
             const { refreshToken } = req.cookies;
             console.log('requesteredinger:::::: ', req.cookies);
             const userData = await userService.refresh(refreshToken);
+            console.log('userData::: ', userData);
             res.cookie(
                 'refreshToken',
                 userData.refreshToken,
@@ -94,6 +92,7 @@ class UserController {
             );
             return res.json(userData);
         } catch (err) {
+            console.log('err::: ', err);
             next(err);
         }
     };
