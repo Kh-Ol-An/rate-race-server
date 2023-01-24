@@ -14,12 +14,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
     credentials: true,
-    withCredentials: true,
     origin: process.env.CLIENT_URL,
 }));
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', process.env.CLIENT_URL);
-    res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST');
     next();
 });
 app.use('/api', router);
