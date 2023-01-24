@@ -88,6 +88,7 @@ class UserController {
             //         secure: true, // якщо використовується https
             //     },
             // );
+            console.log('userDatauserDatauserDatauserData::: ', userData);
             return res.json(userData);
         } catch (err) {
             next(err);
