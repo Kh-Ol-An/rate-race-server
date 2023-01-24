@@ -48,8 +48,11 @@ class UserController {
                 },
             );
 
+            console.log('resresresresres:::::: ', res);
+            console.log('userDatauserDatauserDatauserData::: ', userData);
             return res.json(userData);
         } catch (err) {
+            console.log('err::: ', err);
             next(err);
         }
     };
@@ -78,9 +81,7 @@ class UserController {
     async refresh(req, res, next) {
         try {
             const { refreshToken } = req.cookies;
-            console.log('requesteredinger:::::: ', req.cookies);
             const userData = await userService.refresh(refreshToken);
-            console.log('userData::: ', userData);
             res.cookie(
                 'refreshToken',
                 userData.refreshToken,
@@ -92,7 +93,6 @@ class UserController {
             );
             return res.json(userData);
         } catch (err) {
-            console.log('err::: ', err);
             next(err);
         }
     };
