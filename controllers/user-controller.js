@@ -17,15 +17,15 @@ class UserController {
             const { name, email, password } = req.body;
             const userData = await userService.registration(name, email, password);
 
-            res.cookie(
-                'refreshToken',
-                userData.refreshToken,
-                {
-                    maxAge: 30 * 24 * 60 * 60 * 1000,
-                    httpOnly: false,
-                    secure: true, // якщо використовується https
-                },
-            );
+            // res.cookie(
+            //     'refreshToken',
+            //     userData.refreshToken,
+            //     {
+            //         maxAge: 30 * 24 * 60 * 60 * 1000,
+            //         httpOnly: false,
+            //         secure: true, // якщо використовується https
+            //     },
+            // );
 
             return res.json(userData);
         } catch (err) {
@@ -38,21 +38,18 @@ class UserController {
             const { email, password } = req.body;
             const userData = await userService.login(email, password);
 
-            res.cookie(
-                'refreshToken',
-                userData.refreshToken,
-                {
-                    maxAge: 30 * 24 * 60 * 60 * 1000,
-                    httpOnly: false,
-                    secure: true, // якщо використовується https
-                },
-            );
+            // res.cookie(
+            //     'refreshToken',
+            //     userData.refreshToken,
+            //     {
+            //         maxAge: 30 * 24 * 60 * 60 * 1000,
+            //         httpOnly: false,
+            //         secure: true, // якщо використовується https
+            //     },
+            // );
 
-            console.log('resresresresres:::::: ', res);
-            console.log('userDatauserDatauserDatauserData::: ', userData);
             return res.json(userData);
         } catch (err) {
-            console.log('err::: ', err);
             next(err);
         }
     };
@@ -82,15 +79,15 @@ class UserController {
         try {
             const { refreshToken } = req.cookies;
             const userData = await userService.refresh(refreshToken);
-            res.cookie(
-                'refreshToken',
-                userData.refreshToken,
-                {
-                    maxAge: 30 * 24 * 60 * 60 * 1000,
-                    httpOnly: false,
-                    secure: true, // якщо використовується https
-                },
-            );
+            // res.cookie(
+            //     'refreshToken',
+            //     userData.refreshToken,
+            //     {
+            //         maxAge: 30 * 24 * 60 * 60 * 1000,
+            //         httpOnly: false,
+            //         secure: true, // якщо використовується https
+            //     },
+            // );
             return res.json(userData);
         } catch (err) {
             next(err);
