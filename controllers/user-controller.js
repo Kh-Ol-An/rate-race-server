@@ -22,7 +22,7 @@ class UserController {
                 userData.refreshToken,
                 {
                     maxAge: 30 * 24 * 60 * 60 * 1000,
-                    httpOnly: true,
+                    httpOnly: false,
                     secure: true, // якщо використовується https
                 },
             );
@@ -43,7 +43,7 @@ class UserController {
                 userData.refreshToken,
                 {
                     maxAge: 30 * 24 * 60 * 60 * 1000,
-                    httpOnly: true,
+                    httpOnly: false,
                     secure: true, // якщо використовується https
                 },
             );
@@ -87,7 +87,7 @@ class UserController {
                 userData.refreshToken,
                 {
                     maxAge: 30 * 24 * 60 * 60 * 1000,
-                    httpOnly: true,
+                    httpOnly: false,
                     secure: true, // якщо використовується https
                 },
             );
