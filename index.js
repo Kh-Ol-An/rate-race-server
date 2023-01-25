@@ -16,14 +16,14 @@ app.use(cors({
     credentials: true,
     origin: process.env.CLIENT_URL,
 }));
-app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', req.headers.origin);
-    res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type,token");
-    res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-    res.header("Content-Type", "application/json;charset=utf-8");
-    res.header ("Access-Control-Allow-Credentials", true);
-    next();
-});
+// app.use(function(req, res, next) {
+//     res.header('Access-Control-Allow-Origin', req.headers.origin);
+//     res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type,token");
+//     res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+//     res.header("Content-Type", "application/json;charset=utf-8");
+//     res.header ("Access-Control-Allow-Credentials", true);
+//     next();
+// });
 app.use('/api', router);
 app.use(errorMiddleware);
 
