@@ -22,8 +22,9 @@ class UserController {
                 userData.refreshToken,
                 {
                     maxAge: 30 * 24 * 60 * 60 * 1000,
-                    // httpOnly: false,
-                    // secure: true, // якщо використовується https
+                    httpOnly: false,
+                    secure: true,
+                    sameSite: 'lax',
                 },
             );
 
@@ -43,8 +44,9 @@ class UserController {
                 userData.refreshToken,
                 {
                     maxAge: 30 * 24 * 60 * 60 * 1000,
-                    // httpOnly: false,
-                    // secure: true, // якщо використовується https
+                    httpOnly: false,
+                    secure: true,
+                    sameSite: 'lax',
                 },
             );
 
@@ -85,8 +87,9 @@ class UserController {
                 userData.refreshToken,
                 {
                     maxAge: 30 * 24 * 60 * 60 * 1000,
-                    // httpOnly: false,
-                    // secure: true, // якщо використовується https
+                    httpOnly: false,
+                    secure: true,
+                    sameSite: 'lax',
                 },
             );
             return res.json(userData);
