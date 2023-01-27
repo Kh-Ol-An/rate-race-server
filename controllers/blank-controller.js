@@ -17,7 +17,10 @@ class BlankController {
 
     async getBlank(req, res, next) {
         try {
-            const blank = await blankService.getBlank();
+            const email = req.user.email;
+            const user = await userModel.findOne({ email });
+            const userDto = new UserDto(user);
+            const blank = await blankService.getBlank({ user: userDto.id });
             res.json(blank);
         } catch (err) {
             next(err);

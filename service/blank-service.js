@@ -5,8 +5,8 @@ class BlankService {
         return blankModel.updateOne(filter, { ...update });
     };
 
-    getBlank() {
-        return blankModel.find();
+    getBlank(filter) {
+        return blankModel.findOne(filter);
     };
 }
 
