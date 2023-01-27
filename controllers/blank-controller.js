@@ -8,7 +8,7 @@ class BlankController {
             const email = req.user.email;
             const user = await userModel.findOne({ email });
             const userDto = new UserDto(user);
-            const blank = await blankService.saveBlank({ user: userDto.id }, { ...req.body, user: userDto.id });
+            const blank = await blankService.saveBlank({ user: userDto.id }, { ...req.body });
             return res.json(blank);
         } catch (err) {
             next(err);

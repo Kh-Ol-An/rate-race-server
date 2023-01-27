@@ -1,12 +1,12 @@
 const blankModel = require('../models/blank-model');
 
 class BlankService {
-    async saveBlank(filter, update) {
-        return await blankModel.updateOne(filter, { ...update });
+    saveBlank(filter, update) {
+        return blankModel.updateOne(filter, { ...update });
     };
 
-    async getBlank() {
-        return await blankModel.find();
+    getBlank() {
+        return blankModel.find();
     };
 }
 
