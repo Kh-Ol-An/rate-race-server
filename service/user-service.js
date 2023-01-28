@@ -11,7 +11,7 @@ class MailService {
     async registration(name, email, password) {
         const candidate = await userModel.findOne({ email });
         if (candidate) {
-            throw ApiError.BadRequest(`Користувач з поштовою адресою '${email}' вже існує.`, 'registration');
+            throw ApiError.BadRequest(`Користувач з поштовою адресою '${email}' вже існує.`);
         }
 
         const hashPassword = await bcrypt.hash(password, 3);
@@ -34,7 +34,7 @@ class MailService {
     async activate(activationLink) {
         const user = await userModel.findOne({ activationLink });
         if (!user) {
-            throw ApiError.BadRequest('Некоректне посиланя активації.', 'activate');
+            throw ApiError.BadRequest('Некоректне посиланя активації.');
         }
 
         user.isActivated = true;
@@ -44,12 +44,12 @@ class MailService {
     async login(email, password) {
         const user = await userModel.findOne({ email });
         if (!user) {
-            throw ApiError.BadRequest('Користувач з таким email не знайдений', 'login.find');
+            throw ApiError.BadRequest('Користувач з таким email не знайдений.');
         }
 
         const isPassEquals = await bcrypt.compare(password, user.password);
         if (!isPassEquals) {
-            throw ApiError.BadRequest('Невірний пароль', 'login.password');
+            throw ApiError.BadRequest('Невірний пароль.');
         }
 
         const userDto = new UserDto(user);
@@ -68,7 +68,7 @@ class MailService {
 
     async refresh(refreshToken) {
         if (!refreshToken) {
-            throw ApiError.UnauthorizedError('Користувач не авторизований(((');
+            throw ApiError.UnauthorizedError();
         }
 
         const userData = tokenService.validateRefreshToken(refreshToken);

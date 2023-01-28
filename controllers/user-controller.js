@@ -9,7 +9,6 @@ class UserController {
             if (!errors.isEmpty()) {
                 return next(ApiError.BadRequest(
                     'Помилка під час валідації',
-                    'registration.validation',
                     errors.array(),
                 ))
             }
