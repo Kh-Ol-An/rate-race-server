@@ -54,6 +54,7 @@ const BlankSchema = new Schema({
             corruptLand: [],
         }
     },
+    deputies: { type: Number, default: 0 },
     rich: { type: Boolean, default: false },
     win: { type: Boolean, default: false },
 });
